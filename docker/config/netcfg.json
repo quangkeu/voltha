@@ -3,7 +3,7 @@
     "org.opencord.aaa": {
       "AAA": {
         "radiusIp": "172.25.0.100",
-	"nasIp": "5.6.7.8",
+	"nasIp": "172.25.0.101",
         "radiusServerPort": "1812",
         "radiusSecret": "SECRET",
 	"bindings" : [
@@ -18,16 +18,28 @@
          "s-tag" : 2,
          "c-tag" : 122,
          "nas_port_id" : "location"
-        }
+        }, {
+		"mac" : "00:00:00:00:00:80",
+		"s-tag": 4000,
+		"c-tag": 128,
+		"nas_port_id" : "uni-128"
+	}
 	  ] 
     }
  },
     "org.onosproject.dhcp-relay" : {
            "dhcprelay" : {
-               "dhcpserverConnectPoint" : "of:00000cafecafecafe/4",
+               "dhcpserverConnectPoint" : "of:0001000000000001/0",
                "serverip" : "11.11.11.11",
                "gatewayip" : "9.9.9.9"
            }
+    },
+	  "org.opencord.dhcpl2relay": {
+		  "dhcpl2relay" : {
+		    "dhcpserverConnectPoints": [ "of:0001000000000001/0" ]
+		  }
+	    }
+	    
     }
   },
   "devices": {
@@ -86,7 +98,23 @@
       }
     }
   },
-  "ports" : { 
+  "ports" : {
+	  "of:0001000000000001/0" : {
+		  "interfaces" : [
+			  {
+				  "name" : "nni",
+				  "mac" : "00:00:00:00:00:00"
+			  }
+			  ]
+	  },
+	  "of:0001000000000001/128" : {
+		  "interfaces" : [
+			  {
+				  "name" : "uni-128",
+				  "mac" : "00:00:00:00:00:80"
+			  }
+			  ]
+	  },	  
 	"of:0000000000000001/2" : {
            "interfaces" : [
                {
